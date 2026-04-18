@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
             name: "AC Milan domaći dres 25/26 - Luka Modrić",
             price: 130,
             image: "slike/modric.jpg"
+           
         },
         {
             id: 9,
