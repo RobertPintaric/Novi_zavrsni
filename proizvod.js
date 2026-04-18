@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: 8,
             name: "AC Milan domaći dres 25/26 - Luka Modrić",
             price: 130,
-            image: "https://static1.cdn-subsidesports.com/2/media/catalog/product/cache/38d4094f49a5c2931b615f53f1250097/3/f/3ff442b564befd50daa41f470d692d17ff4a428b383ca2464094bbc713d8366c.jpeg"
+            image: "slike/modric.jpg"
         },
         {
             id: 9,
