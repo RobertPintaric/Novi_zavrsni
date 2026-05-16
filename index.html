@@ -8,6 +8,145 @@
   <link rel="stylesheet" href="proizvodi.css" />
   <script src="pitanja.js" defer></script>
   <script src="login.js" defer></script>
+
+  <style>
+    .home-benefits {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 35px auto;
+      max-width: 900px;
+    }
+
+    .benefit-card {
+      background: white;
+      padding: 20px;
+      border-radius: 14px;
+      width: 240px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .benefit-card h3 {
+      margin-top: 0;
+      color: #0a3550;
+      font-size: 20px;
+    }
+
+    .benefit-card p {
+      font-size: 15px;
+      color: #124b6f;
+      margin-bottom: 0;
+    }
+
+    .contact-form {
+      max-width: 500px;
+      margin: 30px auto 0 auto;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    .contact-form label {
+      display: block;
+      font-weight: bold;
+      margin-top: 12px;
+      margin-bottom: 6px;
+      color: #0a3550;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      border: 1px solid #b9dff7;
+      border-radius: 8px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+    }
+
+    .contact-form textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .contact-form button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(90deg, #4fb3ff, #9ed8ff);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .contact-form button:hover {
+      opacity: 0.85;
+    }
+
+    .form-message {
+      text-align: center;
+      font-weight: bold;
+      color: #0a3550;
+      margin-top: 15px;
+    }
+
+    .cart-link {
+      position: relative;
+      display: inline-block;
+    }
+
+    .cart-count {
+      display: none;
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #ff6666;
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+      min-width: 18px;
+      height: 18px;
+      line-height: 18px;
+      border-radius: 50%;
+      text-align: center;
+    }
+
+    .info-list {
+      max-width: 800px;
+      margin: 25px auto;
+      text-align: left;
+      color: #124b6f;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .info-list li {
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .home-benefits {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .benefit-card {
+        width: 85%;
+      }
+
+      .contact-form {
+        width: 90%;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -27,7 +166,10 @@
     <a href="#" onclick="showSection('kontakt'); return false;">Kontaktiraj nas</a>
 
     <div class="header-icons">
-      <a href="kosarica.html" class="icon" title="Košarica">🛒</a>
+      <a href="kosarica.html" class="icon cart-link" title="Košarica">
+        🛒
+        <span id="cart-count" class="cart-count">0</span>
+      </a>
       <a href="login.html" id="login-link" class="icon" title="Prijava">👤</a>
     </div>
   </nav>
@@ -38,10 +180,30 @@
     <div class="intro">
       <h2>Najbolji izbor licenciranih dresova</h2>
       <p>
-        Dobrodošli u GOAT dresove — mjesto gdje se nalaze najkvalitetniji dresovi vaših omiljenih igrača i klubova.
+        Dobrodošli u GOAT dresove — mjesto gdje se nalaze kvalitetni nogometni dresovi vaših omiljenih klubova i igrača.
+      </p>
+      <p>
+        Naša stranica omogućuje brz pregled ponude, jednostavan odabir veličine i siguran proces kupnje.
       </p>
       <p id="customerGreeting" class="customer-greeting" style="display: none;"></p>
       <a class="cta" href="#" onclick="showSection('svi-proizvodi'); return false;">Pogledaj sve proizvode</a>
+    </div>
+
+    <div class="home-benefits">
+      <div class="benefit-card">
+        <h3>⚽ Licencirani dresovi</h3>
+        <p>U ponudi se nalaze dresovi poznatih klubova i igrača iz aktualne nogometne sezone.</p>
+      </div>
+
+      <div class="benefit-card">
+        <h3>🚚 Dostava</h3>
+        <p>Dostava je dostupna za kupce iz Europe i ostatka svijeta, ovisno o lokaciji narudžbe.</p>
+      </div>
+
+      <div class="benefit-card">
+        <h3>🛒 Jednostavna kupnja</h3>
+        <p>Odaberite proizvod, veličinu i dodajte ga u košaricu u nekoliko jednostavnih koraka.</p>
+      </div>
     </div>
   </section>
 
@@ -103,7 +265,7 @@
       </a>
 
       <a class="product-card" href="proizvod.html?id=8" data-name="AC Milan domaći dres 25/26 - Luka Modrić" data-price="130">
-        <img src="slike/modric.jpg" alt="AC Milan Luka Modrić">
+        <img src="slike/modric.jpg" alt="AC Milan Luka Modrić" />
         <h3>AC Milan domaći dres 25/26 - Luka Modrić</h3>
         <div class="price">130 €</div>
       </a>
@@ -126,13 +288,25 @@
     <div class="intro">
       <h2>O nama</h2>
       <p>
-        Dobrodošli u GOAT dresove, najbolji izbor za kupnju dresova.
-        Mi smo mala tvrtka koja je nedavno krenula sa prodajom dresova,
-        ali u zadnjih nekoliko mjeseci postajemo sve popularniji.
-        Naš cilj je omogućiti mjesto gdje će naši kupci imati mogućnost
-        kupiti dresove svojih najdražih klubova i igrača.
-        Kroz vrijeme naša stranica će imati izbor sa još više izbora dresova.
+        Dobrodošli u GOAT dresove, web trgovinu usmjerenu na prodaju kvalitetnih nogometnih dresova poznatih klubova i igrača.
+        Naša ideja nastala je iz ljubavi prema nogometu i želje da kupcima omogućimo jednostavan način pronalaska dresa omiljenog kluba.
       </p>
+
+      <p>
+        Iako smo mala tvrtka koja je nedavno krenula s prodajom dresova, u zadnjih nekoliko mjeseci bilježimo sve veći interes kupaca.
+        Posebno nam je važno da stranica bude pregledna, jednostavna za korištenje i dostupna svima koji žele brzo pronaći željeni proizvod.
+      </p>
+
+      <p>
+        Naš cilj je omogućiti mjesto gdje će kupci imati mogućnost kupiti dresove svojih najdražih klubova i igrača.
+        Kroz vrijeme planiramo proširiti izbor proizvoda, dodati nove klubove, različite veličine i dodatne nogometne artikle.
+      </p>
+
+      <ul class="info-list">
+        <li>U ponudi se nalaze dresovi poznatih europskih i svjetskih klubova.</li>
+        <li>Posebna pažnja posvećena je jednostavnom pregledu proizvoda i odabiru veličine.</li>
+        <li>Stranica je izrađena tako da kupac brzo može pronaći informacije o proizvodu, dostavi i kontaktu.</li>
+      </ul>
     </div>
   </section>
 
@@ -140,13 +314,30 @@
     <div class="intro">
       <h2>Kontaktiraj nas</h2>
       <p>
+        Za sva pitanja vezana uz proizvode, veličine, narudžbe, dostavu ili povrat proizvoda možete nas kontaktirati putem e-maila, telefona ili kontakt obrasca.
+      </p>
+
+      <p>
         Gmail:
-        <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=dresovi.GOAT.zg@gmail.com" target="_blank" rel="noopener noreferrer">
-          dresovi.GOAT.zg@gmail.com
-        </a>
+        <a href="mailto:dresovi.GOAT.zg@gmail.com">dresovi.GOAT.zg@gmail.com</a>
       </p>
       <p>Naš službeni broj: 095 555 7367</p>
       <p>Broj vlasnika: 092 331 2588</p>
+      <p>Radno vrijeme korisničke podrške: ponedjeljak - petak, 9:00 - 18:00</p>
+
+      <form id="contactForm" class="contact-form">
+        <label for="contactName">Ime i prezime:</label>
+        <input type="text" id="contactName" placeholder="Unesite ime i prezime" />
+
+        <label for="contactEmail">E-mail:</label>
+        <input type="email" id="contactEmail" placeholder="Unesite e-mail adresu" />
+
+        <label for="contactMessage">Poruka:</label>
+        <textarea id="contactMessage" placeholder="Napišite svoju poruku"></textarea>
+
+        <button type="submit">Pošalji poruku</button>
+        <p id="contactFormMessage" class="form-message"></p>
+      </form>
     </div>
   </section>
 
@@ -157,35 +348,56 @@
       <div class="faq-item">
         Koliko traje dostava?
         <div class="faq-answer">
-          Dostava traje s obzirom na lokaciju dostave. Ako je lokacija dostave u Europi dostava će trajati maksimalno 2 tjedna, a dostave izvan Europe mogu trajati maksimalno mjesec dana.
+          Dostava traje ovisno o lokaciji kupca. Za područje Europe dostava traje najviše do 2 tjedna, dok dostave izvan Europe mogu trajati do mjesec dana. Kupac nakon narudžbe dobiva osnovne informacije o tijeku dostave.
         </div>
       </div>
 
       <div class="faq-item">
         Do kuda sve dostavljamo?
         <div class="faq-answer">
-          Dostava proizvoda je moguća po cijelom svijetu.
+          Dostava proizvoda moguća je po cijelom svijetu. Cilj trgovine je omogućiti kupnju dresova kupcima iz različitih država, neovisno o tome nalaze li se u Europi ili izvan nje.
         </div>
       </div>
 
       <div class="faq-item">
         Koliko dostava košta?
         <div class="faq-answer">
-          Dostava za narudžbe po Europi iznosi 0 eura, dok dostave izvan Europe se dodatno plaćaju.
+          Dostava za narudžbe unutar Europe iznosi 0 eura. Dostave izvan Europe dodatno se naplaćuju, a cijena može ovisiti o državi dostave i uvjetima dostavne službe.
         </div>
       </div>
 
       <div class="faq-item">
-        Kakvo je stanje sa povratom proizvoda?
+        Kakvo je stanje s povratom proizvoda?
         <div class="faq-answer">
-          Proizvodi iz narudžbe se mogu vratiti u roku od mjesec dana od kada je paket bio dostavljen.
+          Proizvodi iz narudžbe mogu se vratiti u roku od mjesec dana od dana kada je paket dostavljen. Proizvod treba biti neoštećen i u stanju prikladnom za povrat.
         </div>
       </div>
 
       <div class="faq-item">
         Kako mogu platiti svoju narudžbu?
         <div class="faq-answer">
-          Plaćanje je moguće samo putem naše stranice pomoću kreditnih kartica.
+          Plaćanje narudžbe moguće je putem stranice pomoću kreditnih kartica. Nakon unosa podataka za kupnju korisnik može potvrditi narudžbu.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        Kako odabrati pravu veličinu dresa?
+        <div class="faq-answer">
+          Prilikom otvaranja pojedinog proizvoda kupac može odabrati veličinu dresa. Preporučuje se odabir veličine koju kupac inače nosi, a kod nesigurnosti je najbolje odabrati veću veličinu.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        Mogu li naručiti više dresova odjednom?
+        <div class="faq-answer">
+          Da, kupac može u košaricu dodati više proizvoda. U košarici se prikazuje količina proizvoda, odabrana veličina i ukupna cijena narudžbe.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        Kada mogu očekivati odgovor korisničke podrške?
+        <div class="faq-answer">
+          Na poruke poslane putem kontakt obrasca ili e-maila odgovaramo u najkraćem mogućem roku, najčešće tijekom radnog vremena korisničke podrške.
         </div>
       </div>
     </div>
@@ -217,6 +429,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
       productsGrid.innerHTML = "";
       sortedProducts.forEach(product => productsGrid.appendChild(product));
+    });
+  }
+
+  const cartCount = document.getElementById("cart-count");
+
+  function updateCartCount() {
+    if (!cartCount) return;
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let totalItems = 0;
+
+    cart.forEach(item => {
+      totalItems += item.quantity ? Number(item.quantity) : 1;
+    });
+
+    if (totalItems > 0) {
+      cartCount.textContent = totalItems;
+      cartCount.style.display = "inline-block";
+    } else {
+      cartCount.style.display = "none";
+    }
+  }
+
+  updateCartCount();
+
+  const contactForm = document.getElementById("contactForm");
+  const contactFormMessage = document.getElementById("contactFormMessage");
+
+  if (contactForm && contactFormMessage) {
+    contactForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const name = document.getElementById("contactName").value.trim();
+      const email = document.getElementById("contactEmail").value.trim();
+      const message = document.getElementById("contactMessage").value.trim();
+
+      if (!name || !email || !message) {
+        contactFormMessage.textContent = "Molimo ispunite sva polja prije slanja poruke.";
+        return;
+      }
+
+      const messages = JSON.parse(localStorage.getItem("contactMessages")) || [];
+
+      messages.push({
+        name: name,
+        email: email,
+        message: message,
+        date: new Date().toLocaleString("hr-HR")
+      });
+
+      localStorage.setItem("contactMessages", JSON.stringify(messages));
+
+      contactForm.reset();
+      contactFormMessage.textContent = "Poruka je uspješno zaprimljena. Odgovorit ćemo u najkraćem mogućem roku.";
     });
   }
 });
